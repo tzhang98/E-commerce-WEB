@@ -123,12 +123,28 @@ button.more-options {
 }
 
 button.add-to-cart {
+  display: block;
   width: 50%;
   height: 65px;
   color: white;
   background-color: black;
   border-radius: 10px;
   margin-top: 15px;
+}
+
+.add-to-wishlist {
+  width: 50%;
+  display: block;
+  background-color: #ffcc00; /* Match your desired color */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  margin-right: 10px; /* Add some spacing */
+}
+
+.add-to-wishlist:hover {
+  background-color: #e6b800; /* Change color on hover */
 }
 
 .buy-product {
@@ -204,3 +220,4 @@ td.spec-name {
 .review-author {
   font-weight: 700;
 }
+

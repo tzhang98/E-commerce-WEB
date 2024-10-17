@@ -14,6 +14,8 @@ import AdminDash from "./pages/AdminDash";
 import Contact from "./pages/Contact";
 import Product from "./pages/Product";
 import Messages from "./pages/Messages";
+import Wishlist from "./pages/WishlistPage"
+
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
           <Route path="/messages" element={<Messages />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/product/:id" element={<Product />} />
+          <Route path="/wishlist" element={<Wishlist/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ProductsContextProvider>

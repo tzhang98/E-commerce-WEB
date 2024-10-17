@@ -3,6 +3,9 @@ import { ProductsContext } from './ProductsContext';
 import { useParams } from 'react-router-dom';
 import './Product.css';
 
+const token = localStorage.getItem("token");
+console.log("Token:", token); // Check the token before sending the request
+
 const Product = () => {
     const { id } = useParams();
     const { getProductsById } = useContext(ProductsContext);
@@ -24,6 +27,42 @@ const Product = () => {
             }
         }
     }, [id, getProductsById]);
+
+////////////////////////////////
+    const addToWishlist = async (product) => {
+        
+        try {
+          const token = localStorage.getItem("token"); // Ensure token is retrieved from localStorage
+          console.log("token is:",token);
+          if (!token) {
+            alert("No token found. Please login.");
+            return;
+          }
+          console.log(product)
+          const response = await fetch('http://localhost:5000/api/wishlist', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}` // Ensure token is attached properly
+            },
+            body: JSON.stringify({ productId: productid })
+          });
+      
+          if (response.ok) {
+            alert("Product added to wishlist!");
+          } else if (response.status === 400) {
+            alert("Product is already in the wishlist.");
+          } else if (response.status === 403) {
+            alert("Invalid or expired token. Please log in again.");
+          } else {
+            alert("Error adding product to wishlist.");
+          }
+        } catch (error) {
+          console.error("Error adding product to wishlist", error);
+          alert("Error adding product to wishlist.(CATCH)");
+        }
+      };
+      
 
     return (
         <div className="product-page">
@@ -87,8 +126,15 @@ const Product = () => {
                             }
                         })}
                     </div>
+                    
+                    {/* Add to Wishlist Button */}
+                    <div className="wishlist-product">
+                        
+                        <button className="add-to-wishlist" onClick={() => addToWishlist(product)}>Add to Wishlist</button>
+                    </div>
 
                     <div className="buy-product">
+                        
                         <button className="add-to-cart">Add to cart</button>
 
                         <p className='price'>

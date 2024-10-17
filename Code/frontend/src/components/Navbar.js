@@ -46,6 +46,14 @@ const Navbar = () => {
         </div>
       ) : (
         <div id="logged-account" className="d-flex flex-row align-items-center justify-content-center">
+          
+          <Link to="/wishlist">
+            <img
+              src={window.location.origin + "/icons/black-heart.png"} 
+              alt="wishlist"
+              height={35} 
+            />
+          </Link>
           <Link to="/cart">
             <img
               src={window.location.origin + "/icons/cart.png"}
