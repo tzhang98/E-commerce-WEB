@@ -22,7 +22,13 @@ const adminMessages = require("../controllers/adminMessages");
 
 const { updateUserProfile } = require("../controllers/userController");
 //const { getAllProducts } = require("../controllers/productController");
+
+// add wishlistController
+const wishlistController = require("../controllers/wishlistController");
 const router = express.Router();
+
+
+
 
 router.get("/", routeController.default); // Server is running
 router.get("/api/", routeController.get); //Test Route
@@ -94,4 +100,17 @@ router.get("/product/:productId", reviewController.getReviewsByProduct);
 // Endpoint to get reviews submitted by a specific user
 router.get("/user/:userId", reviewController.getReviewsByUser);
 
+// Add a product to the wishlist
+router.post("/api/wishlist", wishlistController.addToWishlist);
+
+// Get wishlist items for a user
+router.get("/api/wishlist",  wishlistController.getWishlist);
+
+// Remove a product from the wishlist
+router.delete("/api/wishlist",  wishlistController.removeFromWishlist);
+
+
 module.exports = router;
+
+
+
